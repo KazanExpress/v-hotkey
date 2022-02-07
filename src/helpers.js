@@ -1,5 +1,4 @@
-
-const FORBIDDEN_NODES = ['INPUT', 'TEXTAREA', 'SELECT']
+export const DEFAULT_FORBIDDEN_NODES = ['INPUT', 'TEXTAREA', 'SELECT']
 
 /**
  *
@@ -53,7 +52,7 @@ const getHotkeyCallback = (keyMap, keyCode, eventKeyModifiers) => {
  * @param {Array} keyMap
  * @param {Object} modifiers Vue event modifiers
  */
-export const assignKeyHandler = (e, keyMap, modifiers) => {
+export const assignKeyHandler = (e, keyMap, modifiers, forbiddenNodes = DEFAULT_FORBIDDEN_NODES) => {
   const { keyCode, ctrlKey, altKey, shiftKey, metaKey } = e
   const eventKeyModifiers = { ctrlKey, altKey, shiftKey, metaKey }
 
@@ -67,7 +66,7 @@ export const assignKeyHandler = (e, keyMap, modifiers) => {
 
   const { nodeName, isContentEditable } = document.activeElement
   if (isContentEditable) return
-  if (FORBIDDEN_NODES.includes(nodeName)) return
+  if (forbiddenNodes.includes(nodeName)) return
 
   const callback = getHotkeyCallback(keyMap, keyCode, eventKeyModifiers)
   if (!callback) return e
