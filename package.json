@@ -23,7 +23,7 @@
     "!dist/demo.html"
   ],
   "dependencies": {
-    "core-js": "^2.6.5"
+    "core-js": "^2.6.12"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
